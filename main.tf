@@ -23,6 +23,10 @@ module "ec2_instance" {
 
   user_data = <<-EOF
     #!/bin/bash
+    
+    # Install Middleware.io host agent
+    MW_API_KEY=${var.middleware_api_key} MW_TARGET=https://bivcm.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/rpm-install.sh)"
+    
     # Fetch the public IP of the instance
     PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
 
