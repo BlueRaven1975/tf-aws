@@ -12,7 +12,14 @@ module "ec2_instance" {
   iam_role_use_name_prefix = false
   instance_type            = "t3.micro"
   key_name                 = module.key_pair.key_pair_name
-  name                     = "k3s-cluster"
+
+  metadata_options = {
+    "http_endpoint" : "enabled",
+    "http_put_response_hop_limit" : 2,
+    "http_tokens" : "required"
+  }
+
+  name = "k3s-cluster"
 
   user_data = <<-EOF
     #!/bin/bash
