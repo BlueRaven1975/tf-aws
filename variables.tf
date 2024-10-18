@@ -19,6 +19,12 @@ variable "aws_secret_access_key" {
   type        = string
 }
 
+variable "middleware_api_key" {
+  description = "Middleware.io API key"
+  sensitive   = true
+  type        = string
+}
+
 variable "region" {
   default     = "eu-central-1"
   description = "AWS region in which the components are to be deployed"
