@@ -31,6 +31,12 @@ variable "middleware_api_key" {
   type        = string
 }
 
+variable "new_relic_api_key" {
+  description = "New Relic API key"
+  sensitive   = true
+  type        = string
+}
+
 variable "region" {
   default     = "eu-central-1"
   description = "AWS region in which the components are to be deployed"

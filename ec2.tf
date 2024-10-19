@@ -26,6 +26,12 @@ module "ec2_instance" {
     
     # Install Middleware.io host agent
     MW_API_KEY=${var.middleware_api_key} MW_TARGET=https://bivcm.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/rpm-install.sh)"
+
+    # Install New Relic infrastructure agent
+    echo "license_key: ${var.new_relic_api_key}" | tee -a /etc/newrelic-infra.yml
+    curl -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/amazonlinux/2023/x86_64/newrelic-infra.repo
+    yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'
+    yum install newrelic-infra -y
   EOF
 
   user_data_replace_on_change = true
