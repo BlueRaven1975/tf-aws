@@ -38,7 +38,7 @@ module "ec2_instance_sg" {
   description         = "Application server security group"
   egress_rules        = ["all-all"]
   ingress_cidr_blocks = ["0.0.0.0/0"]
-  ingress_rules       = ["http-8080-tcp", "kubernetes-api-tcp", "ssh-tcp"]
+  ingress_rules       = ["ssh-tcp", "http-80-tcp", "https-443-tcp"]
   name                = "app-server-sg"
   use_name_prefix     = false
 }
