@@ -15,7 +15,7 @@ module "ec2_instance" {
 
   metadata_options = {
     "http_endpoint" : "enabled",
-    "http_put_response_hop_limit" : 2,
+    "http_put_response_hop_limit" : 1,
     "http_tokens" : "required"
   }
 
