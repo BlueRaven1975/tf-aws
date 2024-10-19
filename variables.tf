@@ -19,6 +19,12 @@ variable "aws_secret_access_key" {
   type        = string
 }
 
+variable "budget_threshold" {
+  default     = 0.01
+  description = "Budget threshold triggering notifications and alerts"
+  type        = number
+}
+
 variable "middleware_api_key" {
   description = "Middleware.io API key"
   sensitive   = true
