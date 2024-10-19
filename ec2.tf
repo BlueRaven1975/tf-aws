@@ -3,7 +3,7 @@ module "ec2_instance" {
 
   ami_ssm_parameter           = "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64"
   create_iam_instance_profile = true
-  iam_role_name               = "k3s-cluster"
+  iam_role_name               = "app-server"
 
   iam_role_policies = {
     AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
@@ -19,7 +19,7 @@ module "ec2_instance" {
     "http_tokens" : "required"
   }
 
-  name = "k3s-cluster"
+  name = "app-server"
 
   user_data = <<-EOF
     #!/bin/bash
@@ -41,11 +41,11 @@ module "ec2_instance" {
 module "ec2_instance_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
-  description         = "K3s cluster security group"
+  description         = "Application server security group"
   egress_rules        = ["all-all"]
   ingress_cidr_blocks = ["0.0.0.0/0"]
   ingress_rules       = ["http-8080-tcp", "kubernetes-api-tcp", "ssh-tcp"]
-  name                = "k3s-cluster-sg"
+  name                = "app-server-sg"
   use_name_prefix     = false
 }
 
