@@ -26,12 +26,6 @@ module "ec2_instance" {
     
     # Install Middleware.io host agent
     MW_API_KEY=${var.middleware_api_key} MW_TARGET=https://bivcm.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/rpm-install.sh)"
-    
-    # Fetch the public IP of the instance
-    TOKEN=$(curl -sfL -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 21600") && PUBLIC_IP=$(curl -sfL -H "X-aws-ec2-metadata-token: $TOKEN" http://169.254.169.254/latest/meta-data/public-ipv4)
-
-    # Install K3s with the public IP as the TLS SAN and kubeconfig file mode set to 644
-    curl -sfL https://get.k3s.io | sh -s - --tls-san $PUBLIC_IP --write-kubeconfig-mode=644
   EOF
 
   user_data_replace_on_change = true
