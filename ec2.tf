@@ -32,6 +32,20 @@ module "ec2_instance" {
     curl -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/amazonlinux/2023/x86_64/newrelic-infra.repo
     yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'
     yum install newrelic-infra -y
+
+    # Make sudo log all commands
+    sed -i '/Defaults    secure_path/a Defaults    logfile=/var/log/sudo.log' /etc/sudoers
+
+    # Forward log files to New Relic 
+    tee /etc/newrelic-infra/logging.d/logging.yml > /dev/null <<-EOT
+    logs:
+      - name: sshd
+        systemd: sshd
+        pattern: publickey|session
+
+      - name: sudo
+        file: /var/log/sudo.log
+    EOT
   EOF
 
   user_data_replace_on_change = true
