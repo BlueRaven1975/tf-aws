@@ -33,6 +33,12 @@ module "ec2_instance" {
     yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'
     yum install newrelic-infra -y
 
+    # Install Docker
+    dnf install -y docker
+    systemctl start docker
+    systemctl enable docker
+    usermod -aG docker ec2-user
+
     # Make sudo log all commands
     sed -i '/Defaults    secure_path/a Defaults    logfile=/var/log/sudo.log' /etc/sudoers
 
