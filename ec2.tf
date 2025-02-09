@@ -52,6 +52,9 @@ module "ec2_instance" {
       - name: sudo
         file: /var/log/sudo.log
     EOT
+
+    # Update my DDNS address
+    curl -s https://ipv4.cloudns.net/api/dynamicURL/?q=ODg3ODIxNjo1NzU4NTQ5NDY6YjllYWRlMDQ2MTFmYjFkOTY3MDg2OWE5YjdiNjhlYjkwZjI2ODU4YjZkYThlNjhiNmE5OGYzM2U3NzkzMTcwYg
   EOF
 
   user_data_replace_on_change = true
