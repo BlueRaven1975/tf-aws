@@ -96,6 +96,6 @@ module "ec2_instance_sg" {
 module "key_pair" {
   source = "terraform-aws-modules/key-pair/aws"
 
-  key_name   = "blueraven"
-  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFPagc07GASIeatPDBl3evs1MrC15K13JJrt3P4YzR/v romano.romano@gmail.com"
+  key_name   = "github-actions-sa"
+  public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILEjM0Q63fJB2vvWAsAaZt3By6XS1pW2wCUBlFDqbnzd github-actions-sa"
 }
