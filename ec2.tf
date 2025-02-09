@@ -34,7 +34,7 @@ module "ec2_instance" {
     yum install newrelic-infra -y
 
     # Install Docker
-    dnf install -y docker
+    yum install -y docker
     systemctl start docker
     systemctl enable docker
     usermod -aG docker ec2-user
