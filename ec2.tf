@@ -39,6 +39,10 @@ module "ec2_instance" {
     systemctl enable docker
     usermod -aG docker ec2-user
 
+    # Install Docker Compose
+    curl -fsSL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-$(uname -m) -o /usr/local/bin/docker-compose
+    chmod 0755 /usr/local/bin/docker-compose
+
     # Make sudo log all commands
     sed -i '/Defaults    secure_path/a Defaults    logfile=/var/log/sudo.log' /etc/sudoers
 
