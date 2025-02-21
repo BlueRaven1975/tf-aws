@@ -77,18 +77,18 @@ module "ec2_sg" {
 
   ingress_with_cidr_blocks = [
     {
-      from_port   = 8080
-      to_port     = 8080
-      protocol    = "tcp"
-      description = "Go hello-world app"
       cidr_blocks = "0.0.0.0/0"
+      description = "Go hello-world app"
+      from_port   = 8080
+      protocol    = "tcp"
+      to_port     = 8080
     },
     {
-      from_port   = 8081
-      to_port     = 8081
-      protocol    = "tcp"
-      description = "Python hello-world app"
       cidr_blocks = "0.0.0.0/0"
+      description = "Python hello-world app"
+      from_port   = 8081
+      protocol    = "tcp"
+      to_port     = 8081
     },
   ]
 
