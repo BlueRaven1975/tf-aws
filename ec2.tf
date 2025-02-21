@@ -76,7 +76,6 @@ module "ec2_sg" {
   ingress_rules       = ["ssh-tcp"]
 
   ingress_with_cidr_blocks = [
-
     {
       from_port   = 8080
       to_port     = 8080
@@ -84,7 +83,6 @@ module "ec2_sg" {
       description = "Go hello-world app"
       cidr_blocks = "0.0.0.0/0"
     },
-
     {
       from_port   = 8081
       to_port     = 8081
@@ -92,7 +90,6 @@ module "ec2_sg" {
       description = "Python hello-world app"
       cidr_blocks = "0.0.0.0/0"
     },
-
   ]
 
   name            = "app-server-sg"
