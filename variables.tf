@@ -25,6 +25,18 @@ variable "budget_threshold" {
   type        = number
 }
 
+variable "db_password" {
+  description = "Master password for the RDS instance"
+  sensitive   = true
+  type        = string
+}
+
+variable "db_username" {
+  description = "Master username for the RDS instance"
+  sensitive   = true
+  type        = string
+}
+
 variable "middleware_api_key" {
   description = "Middleware.io API key"
   sensitive   = true
