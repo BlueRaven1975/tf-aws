@@ -15,4 +15,22 @@ module "db" {
   skip_final_snapshot         = true
   storage_type                = "gp2"
   username                    = var.db_username
+  vpc_security_group_ids      = [module.db_sg.security_group_id]
+}
+
+module "db_sg" {
+  source = "terraform-aws-modules/security-group/aws"
+
+  description = "RDS instance security group"
+
+  ingress_with_source_security_group_id = [
+    {
+      rule                     = "mysql-tcp"
+      source_security_group_id = module.ec2_sg.security_group_id
+
+    }
+  ]
+
+  name            = "db-sg"
+  use_name_prefix = false
 }
