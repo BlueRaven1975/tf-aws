@@ -24,15 +24,6 @@ module "ec2_instance" {
   user_data = <<-EOF
     #!/bin/bash
     
-    # Install Middleware.io host agent
-    MW_API_KEY=${var.middleware_api_key} MW_TARGET=https://bivcm.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/rpm-install.sh)"
-
-    # Install New Relic infrastructure agent
-    echo "license_key: ${var.new_relic_api_key}" | tee -a /etc/newrelic-infra.yml
-    curl -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/amazonlinux/2023/x86_64/newrelic-infra.repo
-    yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'
-    yum install newrelic-infra -y
-
     # Install Docker
     yum install -y docker
     systemctl start docker
@@ -43,8 +34,20 @@ module "ec2_instance" {
     curl -fsSL https://github.com/docker/compose/releases/latest/download/docker-compose-linux-$(uname -m) -o /usr/local/bin/docker-compose
     chmod 0755 /usr/local/bin/docker-compose
 
+    # Install MySQL client
+    yum install -y mariadb105
+
     # Make sudo log all commands
     sed -i '/Defaults    secure_path/a Defaults    logfile=/var/log/sudo.log' /etc/sudoers
+
+    # Install Middleware.io host agent
+    MW_API_KEY=${var.middleware_api_key} MW_TARGET=https://bivcm.middleware.io:443 bash -c "$(curl -L https://install.middleware.io/scripts/rpm-install.sh)"
+
+    # Install New Relic infrastructure agent
+    echo "license_key: ${var.new_relic_api_key}" | tee -a /etc/newrelic-infra.yml
+    curl -o /etc/yum.repos.d/newrelic-infra.repo https://download.newrelic.com/infrastructure_agent/linux/yum/amazonlinux/2023/x86_64/newrelic-infra.repo
+    yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'
+    yum install newrelic-infra -y
 
     # Forward log files to New Relic 
     tee /etc/newrelic-infra/logging.d/logging.yml > /dev/null <<-EOT
