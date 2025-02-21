@@ -72,6 +72,7 @@ module "ec2_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
   description         = "Application server security group"
+  egress_rules        = ["all-all"]
   ingress_cidr_blocks = ["0.0.0.0/0"]
   ingress_rules       = ["ssh-tcp"]
 

@@ -21,7 +21,8 @@ module "db" {
 module "db_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
-  description = "RDS instance security group"
+  description  = "RDS instance security group"
+  egress_rules = ["all-all"]
 
   ingress_with_source_security_group_id = [
     {
