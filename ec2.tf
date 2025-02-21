@@ -1,4 +1,4 @@
-module "ec2_instance" {
+module "ec2" {
   source = "terraform-aws-modules/ec2-instance/aws"
 
   ami_ssm_parameter           = "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64"
@@ -65,10 +65,10 @@ module "ec2_instance" {
   EOF
 
   user_data_replace_on_change = true
-  vpc_security_group_ids      = [module.ec2_instance_sg.security_group_id]
+  vpc_security_group_ids      = [module.ec2_sg.security_group_id]
 }
 
-module "ec2_instance_sg" {
+module "ec2_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
   description         = "Application server security group"
