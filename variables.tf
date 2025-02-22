@@ -47,6 +47,12 @@ variable "ec2_flavour" {
   }
 }
 
+variable "k3s_host" {
+  default     = "blueraven.ddns-ip.net"
+  description = "K3s server host"
+  type        = string
+}
+
 variable "middleware_api_key" {
   description = "Middleware.io API key"
   sensitive   = true
