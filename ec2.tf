@@ -19,8 +19,16 @@ module "ec2" {
     "http_tokens" : "required"
   }
 
-  name                        = var.ec2_flavour == "docker" ? "app-server" : "k3s-cluster"
-  user_data                   = var.ec2_flavour == "docker" ? file("${path.module}/scripts/user-data-docker.sh") : file("${path.module}/scripts/user-data-k3s.sh")
+  name = var.ec2_flavour == "docker" ? "app-server" : "k3s-cluster"
+
+  user_data = templatefile(
+    var.ec2_flavour == "docker" ? "${path.module}/scripts/user-data-docker.sh" : "${path.module}/scripts/user-data-k3s.sh",
+    {
+      middleware_api_key = var.middleware_api_key
+      new_relic_api_key  = var.new_relic_api_key
+    }
+  )
+
   user_data_replace_on_change = true
   vpc_security_group_ids      = [module.ec2_sg.security_group_id]
 }
