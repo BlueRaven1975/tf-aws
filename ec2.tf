@@ -1,7 +1,7 @@
 module "ec2" {
   source = "terraform-aws-modules/ec2-instance/aws"
 
-  ami_ssm_parameter           = "/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64"
+  ami_ssm_parameter           = "/aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id"
   create_iam_instance_profile = true
   iam_role_name               = "app-server"
 
