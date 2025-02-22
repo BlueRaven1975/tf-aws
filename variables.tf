@@ -37,6 +37,16 @@ variable "db_username" {
   type        = string
 }
 
+variable "ec2_flavour" {
+  default     = "docker"
+  description = "Flavour of the EC2 instance to be created"
+  type        = string
+  validation {
+    condition     = contains(["docker", "k3s"], var.ec2_flavour)
+    error_message = "Invalid EC2 flavour: please specify 'docker' or 'k3s'"
+  }
+}
+
 variable "middleware_api_key" {
   description = "Middleware.io API key"
   sensitive   = true
