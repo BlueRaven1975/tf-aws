@@ -12,8 +12,8 @@ resource "aws_ssm_maintenance_window_target" "this" {
   resource_type = "INSTANCE"
 
   targets {
-    key    = "InstanceIds"
-    values = ["*"]
+    key    = "tag:tfe_workspace"
+    values = ["tf-aws"]
   }
 
   window_id = aws_ssm_maintenance_window.this.id
