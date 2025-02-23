@@ -8,7 +8,7 @@ resource "aws_ssm_maintenance_window" "this" {
   description = "Patch Manager maintenance window"
   duration    = 3
   name        = "patch-manager"
-  schedule    = "cron(0 1 ? * * *)"
+  schedule    = "cron(30 20 ? * * *)"
 }
 
 resource "aws_ssm_maintenance_window_target" "this" {
