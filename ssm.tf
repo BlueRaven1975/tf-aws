@@ -1,8 +1,3 @@
-resource "aws_ssm_default_patch_baseline" "this" {
-  baseline_id      = aws_ssm_patch_baseline.this.id
-  operating_system = aws_ssm_patch_baseline.this.operating_system
-}
-
 resource "aws_ssm_maintenance_window" "this" {
   cutoff      = 1
   description = "Patch Manager maintenance window"
@@ -53,79 +48,4 @@ resource "aws_ssm_maintenance_window_task" "this" {
 
   task_type = "RUN_COMMAND"
   window_id = aws_ssm_maintenance_window.this.id
-}
-
-resource "aws_ssm_patch_baseline" "this" {
-
-  approval_rule {
-    approve_after_days  = 0
-    compliance_level    = "CRITICAL"
-    enable_non_security = false
-
-    patch_filter {
-      key    = "PRODUCT"
-      values = ["Ubuntu24.04"]
-    }
-
-    patch_filter {
-      key    = "PRIORITY"
-      values = ["Required"]
-    }
-
-  }
-
-  approval_rule {
-    approve_after_days  = 3
-    compliance_level    = "HIGH"
-    enable_non_security = false
-
-    patch_filter {
-      key    = "PRODUCT"
-      values = ["Ubuntu24.04"]
-    }
-
-    patch_filter {
-      key    = "PRIORITY"
-      values = ["Important"]
-    }
-
-  }
-
-  approval_rule {
-    approve_after_days  = 7
-    compliance_level    = "MEDIUM"
-    enable_non_security = true
-
-    patch_filter {
-      key    = "PRODUCT"
-      values = ["Ubuntu24.04"]
-    }
-
-    patch_filter {
-      key    = "PRIORITY"
-      values = ["Required", "Important", "Standard"]
-    }
-
-  }
-
-  approval_rule {
-    approve_after_days  = 15
-    compliance_level    = "LOW"
-    enable_non_security = true
-
-    patch_filter {
-      key    = "PRODUCT"
-      values = ["Ubuntu24.04"]
-    }
-
-    patch_filter {
-      key    = "PRIORITY"
-      values = ["Optional"]
-    }
-
-  }
-
-  description      = "Ubuntu patch baseline"
-  name             = "ubuntu"
-  operating_system = "UBUNTU"
 }
