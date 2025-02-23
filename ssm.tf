@@ -5,9 +5,9 @@ resource "aws_ssm_default_patch_baseline" "this" {
 
 resource "aws_ssm_maintenance_window" "this" {
   cutoff      = 1
-  description = "Production maintenance window"
+  description = "Patch Manager maintenance window"
   duration    = 3
-  name        = "production"
+  name        = "patch-manager"
   schedule    = "cron(0 1 ? * * *)"
 }
 
@@ -25,8 +25,8 @@ resource "aws_ssm_maintenance_window_target" "this" {
 }
 
 resource "aws_ssm_maintenance_window_task" "this" {
-  description     = "Apply patches to production instances"
-  name            = "production-patch"
+  description     = "Apply patches to all instances"
+  name            = "patch-all"
   max_concurrency = 1
   max_errors      = 1
   priority        = 1
