@@ -1,9 +1,10 @@
 resource "aws_ssm_maintenance_window" "this" {
-  cutoff      = 1
-  description = "Patch Manager maintenance window"
-  duration    = 3
-  name        = "patch-manager"
-  schedule    = "cron(30 20 ? * * *)"
+  cutoff            = 1
+  description       = "Patch Manager maintenance window"
+  duration          = 3
+  name              = "patch-manager"
+  schedule          = "cron(0 21 ? * * *)"
+  schedule_timezone = "Europe/Rome"
 }
 
 resource "aws_ssm_maintenance_window_target" "this" {
