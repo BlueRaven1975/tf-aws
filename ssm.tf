@@ -12,13 +12,13 @@ resource "aws_ssm_maintenance_window" "this" {
 }
 
 resource "aws_ssm_maintenance_window_target" "this" {
-  description   = "Production instances"
-  name          = "production-instances"
+  description   = "All instances"
+  name          = "all-instances"
   resource_type = "INSTANCE"
 
   targets {
-    key    = "tag:tfe_workspace"
-    values = ["tf-aws"]
+    key    = "InstanceIds"
+    values = ["*"]
   }
 
   window_id = aws_ssm_maintenance_window.this.id
