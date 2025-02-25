@@ -24,3 +24,8 @@ module "iam_user_terraform_sa" {
   name                          = "terraform-sa"
   policy_arns                   = ["arn:aws:iam::aws:policy/AdministratorAccess"]
 }
+
+resource "aws_iam_service_linked_role" "config" {
+  aws_service_name = "config.amazonaws.com"
+  description      = "A service-linked role required for AWS Config to access your resources."
+}
