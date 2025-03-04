@@ -28,7 +28,7 @@ logs:
 EOT
 
 # Update my DDNS address
-curl -s https://ipv4.cloudns.net/api/dynamicURL/?q=${cloudns_api_key}
+curl -fsSL https://ipv4.cloudns.net/api/dynamicURL/?q=${cloudns_api_key}
 
 # Invoke GitHub Actions workflows to deploy applications
 curl -X POST -H "Authorization: token ${github_actions_token}" \
