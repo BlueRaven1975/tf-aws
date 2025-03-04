@@ -24,10 +24,11 @@ module "ec2" {
   user_data = templatefile(
     var.ec2_flavour == "docker" ? "${path.module}/scripts/user-data-docker.sh" : "${path.module}/scripts/user-data-k3s.sh",
     {
-      cloudns_api_key    = var.cloudns_api_key
-      k3s_host           = var.k3s_host
-      middleware_api_key = var.middleware_api_key
-      new_relic_api_key  = var.new_relic_api_key
+      cloudns_api_key      = var.cloudns_api_key
+      github_actions_token = var.github_actions_token
+      k3s_host             = var.k3s_host
+      middleware_api_key   = var.middleware_api_key
+      new_relic_api_key    = var.new_relic_api_key
     }
   )
 

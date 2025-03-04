@@ -29,3 +29,9 @@ EOT
 
 # Update my DDNS address
 curl -s https://ipv4.cloudns.net/api/dynamicURL/?q=${cloudns_api_key}
+
+# Invoke GitHub Actions workflows to deploy applications
+curl -X POST -H "Authorization: token ${github_actions_token}" \
+     -H "Accept: application/vnd.github.v3+json" \
+     https://api.github.com/repos/BlueRaven1975/my-apps/dispatches \
+     -d "{\"event_type\":\"ec2-created\"}"

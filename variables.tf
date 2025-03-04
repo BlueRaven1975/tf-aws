@@ -53,6 +53,12 @@ variable "ec2_flavour" {
   }
 }
 
+variable "github_actions_token" {
+  description = "GitHub API token for triggering actions"
+  sensitive   = true
+  type        = string
+}
+
 variable "k3s_host" {
   default     = "blueraven.ddns-ip.net"
   description = "K3s server host"
