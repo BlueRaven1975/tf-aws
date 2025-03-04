@@ -28,4 +28,4 @@ logs:
 EOT
 
 # Update my DDNS address
-curl -s https://ipv4.cloudns.net/api/dynamicURL/?q=ODg3ODIxNjo1NzU4NTQ5NDY6YjllYWRlMDQ2MTFmYjFkOTY3MDg2OWE5YjdiNjhlYjkwZjI2ODU4YjZkYThlNjhiNmE5OGYzM2U3NzkzMTcwYg
+curl -s https://ipv4.cloudns.net/api/dynamicURL/?q=${cloudns_api_key}

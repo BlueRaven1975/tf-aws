@@ -25,6 +25,12 @@ variable "budget_threshold" {
   type        = number
 }
 
+variable "cloudns_api_key" {
+  description = "ClouDNS API key"
+  sensitive   = true
+  type        = string
+}
+
 variable "db_password" {
   description = "Master password for the RDS instance"
   sensitive   = true
