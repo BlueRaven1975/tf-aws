@@ -41,7 +41,7 @@ module "ec2_sg" {
 
   description         = "Application server security group"
   egress_rules        = ["all-all"]
-  ingress_cidr_blocks = ["0.0.0.0/0"]
+  ingress_cidr_blocks = ["101.58.65.56/32"]
   ingress_rules       = ["ssh-tcp"]
 
   ingress_with_cidr_blocks = [
