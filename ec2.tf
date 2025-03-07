@@ -48,16 +48,16 @@ module "ec2_sg" {
     {
       cidr_blocks = "0.0.0.0/0"
       description = "Go hello-world app"
-      from_port   = 8080
+      from_port   = 18080
       protocol    = "tcp"
-      to_port     = 8080
+      to_port     = 18080
     },
     {
       cidr_blocks = "0.0.0.0/0"
       description = "Python hello-world app"
-      from_port   = 8081
+      from_port   = 18081
       protocol    = "tcp"
-      to_port     = 8081
+      to_port     = 18081
     },
   ]
 
