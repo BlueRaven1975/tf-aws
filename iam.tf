@@ -4,7 +4,9 @@ module "iam_user_admin" {
   create_login_profile = false
   force_destroy        = true
   name                 = "admin"
-  policies             = ["arn:aws:iam::aws:policy/AdministratorAccess"]
+  policies = {
+    AdministratorAccess = "arn:aws:iam::aws:policy/AdministratorAccess"
+  }
 }
 
 module "iam_user_github_actions_sa" {
@@ -13,7 +15,9 @@ module "iam_user_github_actions_sa" {
   create_login_profile = false
   force_destroy        = true
   name                 = "github-actions-sa"
-  policies             = ["arn:aws:iam::aws:policy/AdministratorAccess"]
+  policies = {
+    AdministratorAccess = "arn:aws:iam::aws:policy/AdministratorAccess"
+  }
 }
 
 module "iam_user_pulumi_sa" {
@@ -22,7 +26,9 @@ module "iam_user_pulumi_sa" {
   create_login_profile = false
   force_destroy        = true
   name                 = "pulumi-sa"
-  policies             = ["arn:aws:iam::aws:policy/AdministratorAccess"]
+  policies = {
+    AdministratorAccess = "arn:aws:iam::aws:policy/AdministratorAccess"
+  }
 }
 
 module "iam_user_terraform_sa" {
@@ -31,5 +37,7 @@ module "iam_user_terraform_sa" {
   create_login_profile = false
   force_destroy        = true
   name                 = "terraform-sa"
-  policies             = ["arn:aws:iam::aws:policy/AdministratorAccess"]
+  policies = {
+    AdministratorAccess = "arn:aws:iam::aws:policy/AdministratorAccess"
+  }
 }
