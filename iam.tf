@@ -1,5 +1,6 @@
 module "iam_user_admin" {
-  source = "terraform-aws-modules/iam/aws//modules/iam-user"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
+  version = "5.60.0"
 
   create_iam_user_login_profile = false
   force_destroy                 = true
@@ -8,7 +9,8 @@ module "iam_user_admin" {
 }
 
 module "iam_user_github_actions_sa" {
-  source = "terraform-aws-modules/iam/aws//modules/iam-user"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
+  version = "5.60.0"
 
   create_iam_user_login_profile = false
   force_destroy                 = true
@@ -17,7 +19,8 @@ module "iam_user_github_actions_sa" {
 }
 
 module "iam_user_pulumi_sa" {
-  source = "terraform-aws-modules/iam/aws//modules/iam-user"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
+  version = "5.60.0"
 
   create_iam_user_login_profile = false
   force_destroy                 = true
@@ -26,7 +29,8 @@ module "iam_user_pulumi_sa" {
 }
 
 module "iam_user_terraform_sa" {
-  source = "terraform-aws-modules/iam/aws//modules/iam-user"
+  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
+  version = "5.60.0"
 
   create_iam_user_login_profile = false
   force_destroy                 = true

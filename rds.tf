@@ -1,5 +1,6 @@
 module "db" {
-  source = "terraform-aws-modules/rds/aws"
+  source  = "terraform-aws-modules/rds/aws"
+  version = "6.0.0"
 
   allocated_storage           = 20
   create_db_option_group      = false
@@ -19,7 +20,8 @@ module "db" {
 }
 
 module "db_sg" {
-  source = "terraform-aws-modules/security-group/aws"
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "5.3.0"
 
   description  = "RDS instance security group"
   egress_rules = ["all-all"]

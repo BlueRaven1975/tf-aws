@@ -1,5 +1,6 @@
 module "ec2" {
-  source = "terraform-aws-modules/ec2-instance/aws"
+  source  = "terraform-aws-modules/ec2-instance/aws"
+  version = "5.8.0"
 
   ami_ssm_parameter           = "/aws/service/canonical/ubuntu/server/24.04/stable/current/amd64/hvm/ebs-gp3/ami-id"
   create_iam_instance_profile = true
@@ -37,7 +38,8 @@ module "ec2" {
 }
 
 module "ec2_sg" {
-  source = "terraform-aws-modules/security-group/aws"
+  source  = "terraform-aws-modules/security-group/aws"
+  version = "5.3.0"
 
   description         = "Application server security group"
   egress_rules        = ["all-all"]
@@ -66,7 +68,8 @@ module "ec2_sg" {
 }
 
 module "key_pair" {
-  source = "terraform-aws-modules/key-pair/aws"
+  source  = "terraform-aws-modules/key-pair/aws"
+  version = "2.1.0"
 
   key_name   = "github-actions-sa"
   public_key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILEjM0Q63fJB2vvWAsAaZt3By6XS1pW2wCUBlFDqbnzd github-actions-sa"
